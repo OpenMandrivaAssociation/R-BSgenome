@@ -1,26 +1,27 @@
-%bcond_without bootstrap
+%bcond_with internet
+%bcond_with bootstrap
 %global packname  BSgenome
 %global rlibdir  %{_libdir}/R/library
 
 Name:             R-%{packname}
 Version:          1.22.0
-Release:          1
+Release:          2
 Summary:          Infrastructure for Biostrings-based genome data packages
 Group:            Sciences/Mathematics
 License:          Artistic-2.0
 URL:              http://bioconductor.org/packages/release/bioc/html/%{packname}.html
 Source0:          http://bioconductor.org/packages/release/bioc/src/contrib/%{packname}_%{version}.tar.gz
-Requires:         R-methods R-IRanges R-GenomicRanges R-Biostrings 
-%if %{with bootstrap}
-Requires:         R-RUnit R-Biobase 
-%else
-Requires:         R-RUnit R-BSgenome.Celegans.UCSC.ce2 R-BSgenome.Hsapiens.UCSC.hg19 R-SNPlocs.Hsapiens.dbSNP.20100427 R-hgu95av2probe R-Biobase 
+Requires:         R-methods R-IRanges R-GenomicRanges R-Biostrings R-RUnit
+Requires:         R-Biobase
+%if %{without bootstrap}
+Requires:         R-BSgenome.Celegans.UCSC.ce2 R-BSgenome.Hsapiens.UCSC.hg19
+Requires:         R-SNPlocs.Hsapiens.dbSNP.20100427 R-hgu95av2probe
 %endif
-BuildRequires:    R-devel Rmath-devel texlive-collection-latex R-methods R-IRanges R-GenomicRanges R-Biostrings
-%if %{with bootstrap}
-BuildRequires:    R-RUnit R-Biobase 
-%else
-BuildRequires:    R-RUnit R-BSgenome.Celegans.UCSC.ce2 R-BSgenome.Hsapiens.UCSC.hg19 R-SNPlocs.Hsapiens.dbSNP.20100427 R-hgu95av2probe R-Biobase 
+BuildRequires:    R-devel Rmath-devel texlive-collection-latex R-methods
+BuildRequires:    R-IRanges R-GenomicRanges R-Biostrings R-RUnit R-Biobase
+%if %{without bootstrap}
+BuildRequires:    R-BSgenome.Celegans.UCSC.ce2 R-BSgenome.Hsapiens.UCSC.hg19
+BuildRequires:    R-SNPlocs.Hsapiens.dbSNP.20100427 R-hgu95av2probe
 %endif
 
 %description
@@ -38,8 +39,10 @@ test -d %{packname}/src && (cd %{packname}/src; rm -f *.o *.so)
 rm -f %{buildroot}%{rlibdir}/R.css
 
 %if %{without bootstrap}
+    %if %{with internet}
 %check
 %{_bindir}/R CMD check %{packname}
+    %endif
 %endif
 
 %files
