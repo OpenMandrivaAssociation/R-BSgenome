@@ -5,7 +5,7 @@
 
 Name:             R-%{packname}
 Version:          1.22.0
-Release:          2
+Release:          3
 Summary:          Infrastructure for Biostrings-based genome data packages
 Group:            Sciences/Mathematics
 License:          Artistic-2.0
