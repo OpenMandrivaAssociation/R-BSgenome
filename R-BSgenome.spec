@@ -1,16 +1,18 @@
-%bcond_with internet
+#%bcond_with internet
 %bcond_with bootstrap
 %global packname  BSgenome
 %global rlibdir  %{_libdir}/R/library
 
+%define debug_package %{nil}
+
 Name:             R-%{packname}
-Version:          1.22.0
-Release:          3
+Version:          1.28.0
+Release:          1
 Summary:          Infrastructure for Biostrings-based genome data packages
 Group:            Sciences/Mathematics
 License:          Artistic-2.0
 URL:              http://bioconductor.org/packages/release/bioc/html/%{packname}.html
-Source0:          http://bioconductor.org/packages/release/bioc/src/contrib/%{packname}_%{version}.tar.gz
+Source0:          http://bioconductor.org/packages/release/bioc/src/contrib/BSgenome_1.28.0.tar.gz
 Requires:         R-methods R-IRanges R-GenomicRanges R-Biostrings R-RUnit
 Requires:         R-Biobase
 %if %{without bootstrap}
@@ -52,8 +54,22 @@ rm -f %{buildroot}%{rlibdir}/R.css
 %doc %{rlibdir}/%{packname}/DESCRIPTION
 %{rlibdir}/%{packname}/BSgenomeDataPkg-template
 %{rlibdir}/%{packname}/INDEX
+%{rlibdir}/%{packname}/NEWS
 %{rlibdir}/%{packname}/NAMESPACE
 %{rlibdir}/%{packname}/Meta
 %{rlibdir}/%{packname}/R
 %{rlibdir}/%{packname}/extdata
 %{rlibdir}/%{packname}/help
+
+
+%changelog
+* Wed Feb 22 2012 Paulo Andrade <pcpa@mandriva.com.br> 1.22.0-2
++ Revision: 778889
+- Rebuild with proper dependencies
+
+* Fri Feb 17 2012 Paulo Andrade <pcpa@mandriva.com.br> 1.22.0-1
++ Revision: 775794
+- Import R-BSgenome
+- Import R-BSgenome
+
+
