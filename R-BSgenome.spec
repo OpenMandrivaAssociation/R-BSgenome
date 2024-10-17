@@ -11,7 +11,7 @@ Release:          1
 Summary:          Infrastructure for Biostrings-based genome data packages
 Group:            Sciences/Mathematics
 License:          Artistic-2.0
-URL:              http://bioconductor.org/packages/release/bioc/html/%{packname}.html
+URL:              https://bioconductor.org/packages/release/bioc/html/%{packname}.html
 Source0:          http://bioconductor.org/packages/release/bioc/src/contrib/BSgenome_1.28.0.tar.gz
 Requires:         R-methods R-IRanges R-GenomicRanges R-Biostrings R-RUnit
 Requires:         R-Biobase
